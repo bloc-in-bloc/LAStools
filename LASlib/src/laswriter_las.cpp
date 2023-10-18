@@ -64,17 +64,7 @@ BOOL LASwriterLAS::open(const char* file_name, const LASheader* header, U32 comp
     return FALSE;
   }
 
-#ifdef _MSC_VER
-  wchar_t* utf16_file_name = UTF8toUTF16(file_name);
-  file = _wfopen(utf16_file_name, L"wb");
-  if (file == 0)
-  {
-    fprintf(stderr, "ERROR: cannot open file '%ws' for write\n", utf16_file_name);
-  }
-  delete[] utf16_file_name;
-#else
   file = fopen(file_name, "wb");
-#endif
 
   if (file == 0)
   {
